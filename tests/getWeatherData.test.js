@@ -14,9 +14,12 @@ describe("getWeatherData", () => {
       data: mockedResponseData,
     });
 
-    const result = await getWeatherData({ location: location, year: year });
+    const weatherDataArray = await getWeatherData({
+      location: location,
+      year: year,
+    });
 
-    expect(result.length).toEqual(12);
-    expect(result[0].temperature_max).toEqual(7.6);
+    expect(weatherDataArray.length).toEqual(12);
+    expect(weatherDataArray[0].temperature_max).toEqual(7.6);
   });
 });
