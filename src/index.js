@@ -1,45 +1,29 @@
-const axios = require("axios");
+const { getWeatherData } = require("./utils/getWeatherData");
 
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({ location, year }) => {
-  try {
-    const res = await axios.get(
-      `https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`,
-      {
-        headers: {
-          "x-api-key": "mcDLmlxrtw7ZHC70gD8FL4rtrXSPsUEB4iSp4lg3",
-        },
-      }
-    );
-    const maxTemperaturesArray = res.data.result.map(
-      (month) => month.temperature_max
-    );
-    const maxTemperature = Math.max(...maxTemperaturesArray);
-    return maxTemperature;
-  } catch (error) {
-    console.log(error);
-  }
+  const weatherDataArray = await getWeatherData({
+    location: location,
+    year: year,
+  });
+  const maxTemperaturesArray = weatherDataArray.map(
+    (month) => month.temperature_max
+  );
+  const maxTemperature = Math.max(...maxTemperaturesArray);
+  return maxTemperature;
 };
 
 // Get minimum temperature for a year - Must return a number
 exports.getMinTemperature = async ({ location, year }) => {
-  try {
-    const res = await axios.get(
-      `https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`,
-      {
-        headers: {
-          "x-api-key": "mcDLmlxrtw7ZHC70gD8FL4rtrXSPsUEB4iSp4lg3",
-        },
-      }
-    );
-    const minTemperaturesArray = res.data.result.map(
-      (month) => month.temperature_min
-    );
-    const minTemperature = Math.min(...minTemperaturesArray);
-    return minTemperature;
-  } catch (error) {
-    console.log(error);
-  }
+  const weatherDataArray = await getWeatherData({
+    location: location,
+    year: year,
+  });
+  const minTemperaturesArray = weatherDataArray.map(
+    (month) => month.temperature_min
+  );
+  const minTemperature = Math.min(...minTemperaturesArray);
+  return minTemperature;
 };
 
 // Get maximum Temperature for all years - Must return a number
