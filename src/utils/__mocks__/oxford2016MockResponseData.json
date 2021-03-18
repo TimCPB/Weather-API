@@ -1,0 +1,112 @@
+{
+  "result": [
+    {
+      "year": 2016,
+      "month": 1,
+      "temperature_max": 9.4,
+      "temperature_min": 3,
+      "ad_days": 5,
+      "rain": 83.9,
+      "sun": 59.1
+    },
+    {
+      "year": 2016,
+      "month": 2,
+      "temperature_max": 9.1,
+      "temperature_min": 2.7,
+      "ad_days": 6,
+      "rain": 47.6,
+      "sun": 112.9
+    },
+    {
+      "year": 2016,
+      "month": 3,
+      "temperature_max": 10.2,
+      "temperature_min": 2.2,
+      "ad_days": 4,
+      "rain": 74.2,
+      "sun": 123.8
+    },
+    {
+      "year": 2016,
+      "month": 4,
+      "temperature_max": 12.9,
+      "temperature_min": 4,
+      "ad_days": 1,
+      "rain": 53.1,
+      "sun": 163.7
+    },
+    {
+      "year": 2016,
+      "month": 5,
+      "temperature_max": 18.4,
+      "temperature_min": 8.7,
+      "ad_days": 0,
+      "rain": 86.1,
+      "sun": 202.9
+    },
+    {
+      "year": 2016,
+      "month": 6,
+      "temperature_max": 20,
+      "temperature_min": 11.9,
+      "ad_days": 0,
+      "rain": 95.7,
+      "sun": 100.4
+    },
+    {
+      "year": 2016,
+      "month": 7,
+      "temperature_max": 23.3,
+      "temperature_min": 13.8,
+      "ad_days": 0,
+      "rain": 3.4,
+      "sun": 227.6
+    },
+    {
+      "year": 2016,
+      "month": 8,
+      "temperature_max": 23.5,
+      "temperature_min": 13.6,
+      "ad_days": 0,
+      "rain": 41.2,
+      "sun": 204.5
+    },
+    {
+      "year": 2016,
+      "month": 9,
+      "temperature_max": 20.9,
+      "temperature_min": 13,
+      "ad_days": 0,
+      "rain": 44.6,
+      "sun": 113.2
+    },
+    {
+      "year": 2016,
+      "month": 10,
+      "temperature_max": 15.1,
+      "temperature_min": 7.3,
+      "ad_days": 0,
+      "rain": 26.5,
+      "sun": 112.2
+    },
+    {
+      "year": 2016,
+      "month": 11,
+      "temperature_max": 9.4,
+      "temperature_min": 3.3,
+      "ad_days": 3,
+      "rain": 76.1,
+      "sun": 88.3
+    },
+    {
+      "year": 2016,
+      "month": 12,
+      "temperature_max": 9.6,
+      "temperature_min": 3,
+      "ad_days": 10,
+      "rain": 25.8,
+      "sun": 62.3
+    }
+  ]
+}
