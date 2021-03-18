@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const { getMinTemperature } = require("../src/index");
-const mockedResponseData = require("../src/utils/__mocks__/oxford2018ResponseData.json");
+const mockedResponseData = require("../src/utils/__mocks__/oxford2018MockResponseData.json");
 
 describe("getMinTemperature", () => {
   it("Successfully gets the min Temperature for oxford 2018", async () => {

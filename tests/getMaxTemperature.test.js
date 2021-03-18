@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const { getMaxTemperature } = require("../src/index");
-const mockedResponseData = require("../src/utils/__mocks__/oxford2018ResponseData.json");
+const mockedResponseData = require("../src/utils/__mocks__/oxford2018MockResponseData.json");
 
 jest.mock("axios");
 
