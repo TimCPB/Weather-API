@@ -5,6 +5,7 @@ const mockedResponseData = require("../src/utils/__mocks__/oxford2018MockRespons
 
 describe("getMaxTemperature", () => {
   jest.mock("axios");
+
   it("Successfully gets the max Temperature for oxford 2018", async () => {
     const location = "oxford";
     const year = 2018;
