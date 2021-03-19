@@ -1,10 +1,6 @@
 const axios = require("axios");
 
-const {
-  getMaxTemperatureForLocation,
-  getMaxTemperature,
-} = require("../src/index");
-const { getYearRange } = require("../src/utils/getYearRange");
+const { getMaxTemperatureForLocation } = require("../src/index");
 const mockedYearResponseData = require("../src/utils/__mocks__/oxfordYearsMockResponseData.json");
 const mockedOxford2017ResponseData = require("../src/utils/__mocks__/oxford2017MockResponseData.json");
 const mockedOxford2016ResponseData = require("../src/utils/__mocks__/oxford2016MockResponseData.json");
@@ -30,14 +26,9 @@ describe("getMaxTemperatureForLocation", () => {
         data: mockedOxford2017ResponseData,
       });
 
-    // const yearRange = await getYearRange({ location: location });
-    // console.log(yearRange);
-
-    // const maxTemp = await getMaxTemperature({ location: location, year: 2015 });
-    // console.log(maxTemp);
-
     const result = await getMaxTemperatureForLocation({ location: location });
 
     expect(result).toEqual(23.5);
+    jest.clearAllMocks();
   });
 });
