@@ -1,5 +1,3 @@
 exports.getMinElement = ({ array }) => {
-  const minElement = Math.min(...array);
-
-  return minElement;
+  return Math.min(...array);
 };

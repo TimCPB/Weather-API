@@ -1,4 +1,3 @@
 exports.getMaxElement = ({ array }) => {
-  const maxElement = Math.max(...array);
-  return maxElement;
+  return Math.max(...array);
 };
