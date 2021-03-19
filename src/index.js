@@ -1,5 +1,6 @@
 const { generateArray } = require("./utils/generateArray");
 const { getMinElement } = require("./utils/getMinElement");
+const { getMaxElement } = require("./utils/getMaxElement");
 const { getWeatherData } = require("./utils/getWeatherData");
 // const {
 //   getYearlyMaxTemperatures,
@@ -15,7 +16,7 @@ exports.getMaxTemperature = async ({ location, year }) => {
   const maxTemperaturesArray = weatherDataArray.map(
     (month) => month.temperature_max
   );
-  const maxTemperature = Math.max(...maxTemperaturesArray);
+  const maxTemperature = getMaxElement({ array: maxTemperaturesArray });
 
   return maxTemperature;
 };
@@ -29,7 +30,7 @@ exports.getMinTemperature = async ({ location, year }) => {
   const minTemperaturesArray = weatherDataArray.map(
     (month) => month.temperature_min
   );
-  const minTemperature = Math.min(...minTemperaturesArray);
+  const minTemperature = getMinElement({ array: minTemperaturesArray });
 
   return minTemperature;
 };
@@ -49,7 +50,7 @@ exports.getMaxTemperatureForLocation = async ({ location }) => {
   //   yearsArray: yearsArray,
   // });
 
-  const maxTemperature = Math.max(...yearlyMaxTempsArray);
+  const maxTemperature = getMaxElement({ array: yearlyMaxTempsArray });
 
   return maxTemperature;
 };
