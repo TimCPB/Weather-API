@@ -30,19 +30,18 @@ exports.getMinTemperature = async ({ location, year }) => {
 // Get maximum Temperature for all years - Must return a number
 exports.getMaxTemperatureForLocation = async ({ location }) => {
   const { startYear, endYear } = await getYearRange({ location: location });
-  console.log(startYear);
-  console.log(endYear);
   let yearsArray = [];
   for (let i = startYear; i <= endYear; i++) {
     yearsArray.push(i);
   }
-  yearlyMaxTempsArray = await Promise.all([
-    this.getMaxTemperature({ location: location, year: yearsArray[0] }),
-    this.getMaxTemperature({ location: location, year: yearsArray[1] }),
-    this.getMaxTemperature({ location: location, year: yearsArray[2] }),
-  ]);
+  yearlyMaxTempsArray = await Promise.all(
+    yearsArray.map((year) =>
+      this.getMaxTemperature({ location: location, year: year })
+    )
+  );
 
-  return yearlyMaxTempsArray;
+  const maxTemperature = Math.max(...yearlyMaxTempsArray);
+  return maxTemperature;
 };
 
 // Get minimum temperature for all years - Must return a number
