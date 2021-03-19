@@ -1,5 +1,8 @@
 const { generateArray } = require("./utils/generateArray");
 const { getWeatherData } = require("./utils/getWeatherData");
+// const {
+//   getYearlyMaxTemperatures,
+// } = require("./utils/getYearlyMaxTemperatures");
 const { getYearRange } = require("./utils/getYearRange");
 
 // Get maximum Temperature for a year - Must return a number
@@ -34,11 +37,16 @@ exports.getMinTemperature = async ({ location, year }) => {
 exports.getMaxTemperatureForLocation = async ({ location }) => {
   const { startYear, endYear } = await getYearRange({ location: location });
   const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
+
   const yearlyMaxTempsArray = await Promise.all(
     yearsArray.map((year) =>
       this.getMaxTemperature({ location: location, year: year })
     )
   );
+  // const yearlyMaxTempsArray = await getYearlyMaxTemperatures({
+  //   location: location,
+  //   yearsArray: yearsArray,
+  // });
 
   const maxTemperature = Math.max(...yearlyMaxTempsArray);
 
