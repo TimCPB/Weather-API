@@ -1,4 +1,5 @@
 const { generateArray } = require("./utils/generateArray");
+const { getMinElement } = require("./utils/getMinElement");
 const { getWeatherData } = require("./utils/getWeatherData");
 // const {
 //   getYearlyMaxTemperatures,
@@ -55,7 +56,18 @@ exports.getMaxTemperatureForLocation = async ({ location }) => {
 
 // Get minimum temperature for all years - Must return a number
 exports.getMinTemperatureForLocation = async ({ location }) => {
-  return 0;
+  const { startYear, endYear } = await getYearRange({ location: location });
+  const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
+
+  const yearlyMinTempsArray = await Promise.all(
+    yearsArray.map((year) =>
+      this.getMinTemperature({ location: location, year: year })
+    )
+  );
+
+  const minTemperature = getMinElement({ array: yearlyMinTempsArray });
+
+  return minTemperature;
 };
 
 // Get average sun hours for a year - Must return a number
