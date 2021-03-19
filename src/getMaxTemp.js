@@ -13,10 +13,12 @@ getMaxTemperature = async ({ location, year }) => {
     // const resultsArray = res.data.result.map((month) => month.temperature_max);
     // console.log(resultsArray);
     const resultsArray = res.data.result.map((month) => month.temperature_max);
-    console.log(res.data);
+    const sunHoursArray = res.data.result.map((month) => month.sun);
+    // console.log(res.data);
     // console.log(resultsArray);
+    console.log(sunHoursArray);
     const maxTemp = Math.max(...resultsArray);
-    console.log(maxTemp);
+    // console.log(maxTemp);
   } catch (error) {
     console.log(error);
   }
