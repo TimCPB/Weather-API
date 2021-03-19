@@ -9,12 +9,11 @@ describe("getArrayAverage", () => {
     expect(result).toEqual(16.5);
   });
 
-  it("Returns the mean from an array of non-integer numbers", () => {
-    const array = [4.7, 14.2, 3.8, 45.9];
+  it("Returns the mean from an array including some null values", () => {
+    const array = [4.7, null, 3.8, 45.9, 6.9];
 
     result = getArrayAverage({ array: array });
-    console.log(result);
 
-    expect(result).toEqual(17.15);
+    expect(result).toEqual(15.325);
   });
 });
