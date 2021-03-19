@@ -6,7 +6,6 @@ const {
 } = require("../src/index");
 const { getYearRange } = require("../src/utils/getYearRange");
 const mockedYearResponseData = require("../src/utils/__mocks__/oxfordYearsMockResponseData.json");
-const mockedOxford2018ResponseData = require("../src/utils/__mocks__/oxford2018MockResponseData.json");
 const mockedOxford2017ResponseData = require("../src/utils/__mocks__/oxford2017MockResponseData.json");
 const mockedOxford2016ResponseData = require("../src/utils/__mocks__/oxford2016MockResponseData.json");
 const mockedOxford2015ResponseData = require("../src/utils/__mocks__/oxford2015MockResponseData.json");
@@ -29,19 +28,16 @@ describe("getMaxTemperatureForLocation", () => {
       })
       .mockResolvedValueOnce({
         data: mockedOxford2017ResponseData,
-      })
-      .mockResolvedValueOnce({
-        data: mockedOxford2018ResponseData,
       });
 
-    const yearRange = await getYearRange({ location: location });
-    console.log(yearRange);
+    // const yearRange = await getYearRange({ location: location });
+    // console.log(yearRange);
 
-    const maxTemp = await getMaxTemperature({ location: location, year: 2015 });
-    console.log(maxTemp);
+    // const maxTemp = await getMaxTemperature({ location: location, year: 2015 });
+    // console.log(maxTemp);
 
     const result = await getMaxTemperatureForLocation({ location: location });
 
-    expect(result).toEqual(0.3);
+    expect(result).toEqual(23.5);
   });
 });
