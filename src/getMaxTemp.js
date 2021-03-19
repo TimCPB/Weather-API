@@ -14,7 +14,7 @@ getMaxTemperature = async ({ location, year }) => {
     // console.log(resultsArray);
     const resultsArray = res.data.result.map((month) => month.temperature_max);
     const sunHoursArray = res.data.result.map((month) => month.sun);
-    // console.log(res.data);
+    console.log(res.data);
     // console.log(resultsArray);
     console.log(sunHoursArray);
     const maxTemp = Math.max(...resultsArray);
@@ -24,4 +24,4 @@ getMaxTemperature = async ({ location, year }) => {
   }
 };
 
-getMaxTemperature({ location: "oxford", year: 2018 });
+getMaxTemperature({ location: "oxford", year: 1901 });
