@@ -13,16 +13,20 @@ const {
 
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({ location, year }) => {
-  const weatherDataArray = await getWeatherData({
-    location: location,
-    year: year,
-  });
-  const maxTemperaturesArray = weatherDataArray.map(
-    (month) => month.temperature_max
-  );
-  const maxTemperature = getMaxElement({ array: maxTemperaturesArray });
+  try {
+    const weatherDataArray = await getWeatherData({
+      location: location,
+      year: year,
+    });
+    const maxTemperaturesArray = weatherDataArray.map(
+      (month) => month.temperature_max
+    );
+    const maxTemperature = getMaxElement({ array: maxTemperaturesArray });
 
-  return maxTemperature;
+    return maxTemperature;
+  } catch (error) {
+    return 0;
+  }
 };
 
 // Get minimum temperature for a year - Must return a number
