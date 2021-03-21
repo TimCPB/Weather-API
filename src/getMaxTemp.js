@@ -1,5 +1,7 @@
 const axios = require("axios");
 
+const { getArrayAverage } = require("./utils/getArrayAverage");
+
 getMaxTemperature = async ({ location, year }) => {
   try {
     const res = await axios.get(
@@ -17,6 +19,7 @@ getMaxTemperature = async ({ location, year }) => {
     console.log(res.data);
     // console.log(resultsArray);
     console.log(sunHoursArray);
+    console.log(getArrayAverage({ array: sunHoursArray }));
     const maxTemp = Math.max(...resultsArray);
     // console.log(maxTemp);
   } catch (error) {
@@ -24,4 +27,4 @@ getMaxTemperature = async ({ location, year }) => {
   }
 };
 
-getMaxTemperature({ location: "oxford", year: 2018 });
+getMaxTemperature({ location: "oxford", year: 2015 });
