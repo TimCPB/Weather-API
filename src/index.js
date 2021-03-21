@@ -91,5 +91,18 @@ exports.getAverageSunHours = async ({ location, year }) => {
 
 // Get average sun hours for all years - Must return a number
 exports.getAverageSunHoursForLocation = async ({ location }) => {
-  return 0;
+  const { startYear, endYear } = await getYearRange({ location: location });
+  const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
+
+  const yearlyAverageSunHoursArray = await Promise.all(
+    yearsArray.map((year) =>
+      this.getAverageSunHours({ location: location, year: year })
+    )
+  );
+
+  const averageSunHours = getArrayAverage({
+    array: yearlyAverageSunHoursArray,
+  });
+
+  return roundToOneDecimalPlace({ number: averageSunHours });
 };
