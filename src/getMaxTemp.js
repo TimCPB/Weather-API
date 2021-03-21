@@ -2,15 +2,16 @@ const axios = require("axios");
 
 const { getArrayAverage } = require("./utils/getArrayAverage");
 const { roundToOneDecimalPlace } = require("./utils/roundToOneDecimalPlace");
-const { getAverageSunHours } = require("./index");
+const { getAverageSunHours, getMaxTemperature } = require("./index");
+const { WEATHER_API_BASE_URL, WEATHER_API_KEY } = require("./config");
 
-getMaxTemperature = async ({ location, year }) => {
+getMaxTemps = async ({ location, year }) => {
   try {
     const res = await axios.get(
-      `https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`,
+      `${WEATHER_API_BASE_URL}${location}/year/${year}`,
       {
         headers: {
-          "x-api-key": "mcDLmlxrtw7ZHC70gD8FL4rtrXSPsUEB4iSp4lg3",
+          "x-api-key": `${WEATHER_API_KEY}`,
         },
       }
     );
@@ -24,8 +25,8 @@ getMaxTemperature = async ({ location, year }) => {
     console.log(getArrayAverage({ array: sunHoursArray }));
     const maxTemp = Math.max(...resultsArray);
 
-    const result = await getAverageSunHours({ location: "oxford", year: 1903 });
-    console.log(`avg sun hours: ${result}`);
+    const result = await getMaxTemperature({ location: "oxford", year: 1808 });
+    console.log(`max temp: ${result}`);
 
     const result2 = roundToOneDecimalPlace({ number: 12.33333 });
     const result3 = roundToOneDecimalPlace({ number: null });
@@ -38,4 +39,4 @@ getMaxTemperature = async ({ location, year }) => {
   }
 };
 
-getMaxTemperature({ location: "oxford", year: 1968 });
+getMaxTemps({ location: "oxford", year: 1968 });
