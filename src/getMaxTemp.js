@@ -38,4 +38,4 @@ getMaxTemperature = async ({ location, year }) => {
   }
 };
 
-getMaxTemperature({ location: "oxford", year: 1903 });
+getMaxTemperature({ location: "oxford", year: 1968 });
