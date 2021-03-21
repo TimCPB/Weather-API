@@ -1,4 +1,5 @@
 const { generateArray } = require("./utils/generateArray");
+const { getArrayAverage } = require("./utils/getArrayAverage");
 const { getMinElement } = require("./utils/getMinElement");
 const { getMaxElement } = require("./utils/getMaxElement");
 const { getWeatherData } = require("./utils/getWeatherData");
@@ -6,6 +7,9 @@ const { getWeatherData } = require("./utils/getWeatherData");
 //   getYearlyMaxTemperatures,
 // } = require("./utils/getYearlyMaxTemperatures");
 const { getYearRange } = require("./utils/getYearRange");
+const {
+  roundToOneDecimalPlace,
+} = require("../src/utils/roundToOneDecimalPlace");
 
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({ location, year }) => {
@@ -73,7 +77,16 @@ exports.getMinTemperatureForLocation = async ({ location }) => {
 
 // Get average sun hours for a year - Must return a number
 exports.getAverageSunHours = async ({ location, year }) => {
-  return 0;
+  const weatherDataArray = await getWeatherData({
+    location: location,
+    year: year,
+  });
+
+  const sunHoursArray = weatherDataArray.map((month) => month.sun);
+
+  const averageSunHours = getArrayAverage({ array: sunHoursArray });
+
+  return roundToOneDecimalPlace({ number: averageSunHours });
 };
 
 // Get average sun hours for all years - Must return a number
