@@ -16,4 +16,12 @@ describe("getArrayAverage", () => {
 
     expect(result).toEqual(15.325);
   });
+
+  it("Returns null when given an array of only null values", () => {
+    const array = [null, null, null];
+
+    result = getArrayAverage({ array: array });
+
+    expect(result).toEqual(null);
+  });
 });
