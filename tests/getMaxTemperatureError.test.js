@@ -1,11 +1,19 @@
+const axios = require("axios");
+
 const { getMaxTemperature } = require("../src/index");
 
 describe("getMaxTemperature 2", () => {
   it("returns 0 in case of an error", async () => {
-    const location = "oxford";
-    const year = 1818;
+    jest.mock("axios");
 
-    const result2 = await getMaxTemperature({ location: "oxford", year: 1818 });
+    const location = "oxford";
+    const year = 2018;
+
+    axios.get = jest.fn().mockRejectedValue(new Error("test error"));
+
+    const result2 = await getMaxTemperature({ location: location, year: year });
+
+    // console.log(`hello from maxTemp.error.test ${result2}`);
 
     expect(result2).toEqual(0);
   });

@@ -3,9 +3,10 @@ const axios = require("axios");
 const { getMaxTemperature } = require("../src/index");
 const mockedResponseData = require("../src/utils/__mocks__/oxford2018MockResponseData.json");
 
+jest.mock("axios");
+
 describe("getMaxTemperature", () => {
   it("Successfully gets the max Temperature for oxford 2018", async () => {
-    jest.mock("axios");
     const location = "oxford";
     const year = 2018;
 
@@ -20,15 +21,19 @@ describe("getMaxTemperature", () => {
   });
 });
 
-// describe("getMaxTemperature 2", () => {
-//   it("returns 0 in case of an error", async () => {
-//     const location = "oxford";
-//     const year = 1818;
+describe("getMaxTemperature 2", () => {
+  it("returns 0 in case of an error", async () => {
+    const location = "oxford";
+    const year = 1999;
 
-//     const result2 = await getMaxTemperature({ location: "oxford", year: 1818 });
+    axios.get = jest.fn().mockRejectedValue(new Error("test error"));
 
-//     console.log(result2);
+    const result2 = await getMaxTemperature({
+      location: location,
+      year: year,
+    });
 
-//     expect(result2).toEqual(0);
-//   });
-// });
+    expect(result2).toEqual(0);
+    jest.clearAllMocks();
+  });
+});
