@@ -3,9 +3,6 @@ const { getArrayAverage } = require("./utils/getArrayAverage");
 const { getMinElement } = require("./utils/getMinElement");
 const { getMaxElement } = require("./utils/getMaxElement");
 const { getWeatherData } = require("./utils/getWeatherData");
-// const {
-//   getYearlyMaxTemperatures,
-// } = require("./utils/getYearlyMaxTemperatures");
 const { getYearRange } = require("./utils/getYearRange");
 const {
   roundToOneDecimalPlace,
@@ -54,15 +51,10 @@ exports.getMaxTemperatureForLocation = async ({ location }) => {
     const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
 
     const yearlyMaxTempsArray = await Promise.all(
-      yearsArray.map(
-        async (year) =>
-          await this.getMaxTemperature({ location: location, year: year })
+      yearsArray.map((year) =>
+        this.getMaxTemperature({ location: location, year: year })
       )
     );
-    // const yearlyMaxTempsArray = await getYearlyMaxTemperatures({
-    //   location: location,
-    //   yearsArray: yearsArray,
-    // });
 
     const maxTemperature = getMaxElement({ array: yearlyMaxTempsArray });
 
@@ -79,9 +71,8 @@ exports.getMinTemperatureForLocation = async ({ location }) => {
     const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
 
     const yearlyMinTempsArray = await Promise.all(
-      yearsArray.map(
-        async (year) =>
-          await this.getMinTemperature({ location: location, year: year })
+      yearsArray.map((year) =>
+        this.getMinTemperature({ location: location, year: year })
       )
     );
 
@@ -118,9 +109,8 @@ exports.getAverageSunHoursForLocation = async ({ location }) => {
     const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
 
     const yearlyAverageSunHoursArray = await Promise.all(
-      yearsArray.map(
-        async (year) =>
-          await this.getAverageSunHours({ location: location, year: year })
+      yearsArray.map((year) =>
+        this.getAverageSunHours({ location: location, year: year })
       )
     );
 
