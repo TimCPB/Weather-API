@@ -7,7 +7,6 @@ const mockedOxford2016ResponseData = require("../src/utils/__mocks__/oxford2016M
 const mockedOxford2017ResponseData = require("../src/utils/__mocks__/oxford2017MockResponseData.json");
 
 describe("getMaxTemperatureForLocation", () => {
-  jest.mock("axios");
   it("Successfully gets the max temperature from all years for Oxford", async () => {
     const location = "oxford";
 
@@ -29,8 +28,6 @@ describe("getMaxTemperatureForLocation", () => {
     const result = await getMaxTemperatureForLocation({ location: location });
 
     expect(result).toEqual(23.5);
-    // jest.clearAllMocks();
-    axios.get.mockReset();
   });
 
   it("returns 0 in case of an error, such as an invalid location", async () => {
@@ -43,7 +40,6 @@ describe("getMaxTemperatureForLocation", () => {
     });
 
     expect(result).toEqual(0);
-    axios.get.mockReset();
   });
 
   it("Makes the correct calculations when a nested API call fails and returns 0", async () => {

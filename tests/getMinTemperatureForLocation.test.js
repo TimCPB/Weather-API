@@ -7,8 +7,6 @@ const mockedOxford2016ResponseData = require("../src/utils/__mocks__/oxford2016M
 const mockedOxford2017ResponseData = require("../src/utils/__mocks__/oxford2017MockResponseData.json");
 
 describe("getMinTemperatureForLocation", () => {
-  jest.mock("axios");
-
   it("Successfully gets the min temperature for all year for Oxford", async () => {
     const location = "oxford";
 
@@ -30,8 +28,6 @@ describe("getMinTemperatureForLocation", () => {
     const result = await getMinTemperatureForLocation({ location: location });
 
     expect(result).toEqual(0.8);
-    // axios.get.mockReset();
-    jest.clearAllMocks();
   });
 
   it("returns 0 in case of an error, such as an invalid location", async () => {

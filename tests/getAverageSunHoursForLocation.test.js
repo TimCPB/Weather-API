@@ -7,8 +7,6 @@ const mockedOxford2016ResponseData = require("../src/utils/__mocks__/oxford2016M
 const mockedOxford2017ResponseData = require("../src/utils/__mocks__/oxford2017MockResponseData.json");
 
 describe("getAverageSunHoursForLocation", () => {
-  jest.mock("axios");
-
   it("Gets average sun hours for Oxford from a range of years with no null values", async () => {
     const location = "oxford";
 
@@ -30,7 +28,6 @@ describe("getAverageSunHoursForLocation", () => {
     const result = await getAverageSunHoursForLocation({ location: location });
 
     expect(result).toEqual(129.9);
-    jest.clearAllMocks();
   });
 
   it("returns 0 in case of an an error, such as an invalid location", async () => {
