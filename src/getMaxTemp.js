@@ -29,10 +29,13 @@ getMaxTemps = async ({ location, year }) => {
     console.log(`max temp: ${result}`);
 
     const result2 = roundToOneDecimalPlace({ number: 12.33333 });
+    testError = new Error("test error");
     const result3 = roundToOneDecimalPlace({ number: null });
+    const result4 = roundToOneDecimalPlace({ number: testError });
 
     console.log(`result of rounding legit number: ${result2}`);
     console.log(`result of rounding null value: ${result3}`);
+    console.log(`result of rounding an error: ${result4}`);
     // console.log(maxTemp);
   } catch (error) {
     console.log(error);
