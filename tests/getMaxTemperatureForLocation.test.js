@@ -46,31 +46,27 @@ describe("getMaxTemperatureForLocation", () => {
     axios.get.mockReset();
   });
 
-  // it("returns 0 in case of an error where the location is correct but a subsequent API call fails", async () => {
-  //   const location = "oxford";
-  //   axios.get.mockReset();
+  it("Makes the correct calculations when a nested API call fails and returns 0", async () => {
+    const location = "oxford";
 
-  //   axios.get = jest
-  //     .fn()
-  //     .mockResolvedValueOnce({
-  //       data: mockedYearResponseData,
-  //     })
-  //     .mockRejectedValueOnce(new Error("test error"))
-  //     .mockResolvedValueOnce({
-  //       data: mockedOxford2016ResponseData,
-  //     })
-  //     .mockResolvedValueOnce({
-  //       data: mockedOxford2017ResponseData,
-  //     });
+    axios.get = jest
+      .fn()
+      .mockResolvedValueOnce({
+        data: mockedYearResponseData,
+      })
+      .mockResolvedValueOnce({
+        data: mockedOxford2015ResponseData,
+      })
+      .mockRejectedValueOnce(new Error("test error"))
+      .mockResolvedValueOnce({
+        data: mockedOxford2017ResponseData,
+      });
 
-  //   const result = await getMaxTemperatureForLocation({
-  //     location: location,
-  //   });
+    const result = await getMaxTemperatureForLocation({
+      location: location,
+    });
 
-  //   console.log(axios.get.mock.calls);
-  //   console.log(axios.get.mock.results);
-
-  //   expect(axios.get.mock.calls.length).toEqual(4);
-  //   expect(result).toEqual(0);
-  // });
+    expect(axios.get).toHaveBeenCalledTimes(4);
+    expect(result).toEqual(23.3);
+  });
 });

@@ -45,7 +45,7 @@ describe("getAverageSunHoursForLocation", () => {
     expect(result).toEqual(0);
   });
 
-  it("Still makes the correct calculations when a nested API call fails and returns 0", async () => {
+  it("Makes the correct calculations when a nested API call fails and returns 0", async () => {
     const location = "oxford";
 
     axios.get = jest
@@ -62,6 +62,8 @@ describe("getAverageSunHoursForLocation", () => {
       });
 
     const result = await getAverageSunHoursForLocation({ location: location });
+
+    expect(axios.get).toHaveBeenCalledTimes(4);
     expect(result).toEqual(86.3);
   });
 });

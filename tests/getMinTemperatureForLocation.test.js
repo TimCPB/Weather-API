@@ -46,7 +46,7 @@ describe("getMinTemperatureForLocation", () => {
     expect(result).toEqual(0);
   });
 
-  it("returns 0 in case of an error where the location is correct but a subsequent API call fails", async () => {
+  it("Makes the correct calculations when a nested API call fails and returns 0, in this case treating 0 as the new minimum value", async () => {
     const location = "oxford";
 
     axios.get = jest
@@ -64,10 +64,7 @@ describe("getMinTemperatureForLocation", () => {
 
     const result = await getMinTemperatureForLocation({ location: location });
 
-    // console.log(axios.get.mock.calls);
-    // console.log(axios.get.mock.results);
-
-    expect(axios.get.mock.calls.length).toEqual(4);
+    expect(axios.get).toHaveBeenCalledTimes(4);
     expect(result).toEqual(0);
   });
 });
