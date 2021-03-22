@@ -1,4 +1,4 @@
-const { getMaxElement } = require("../src/utils/getMaxElement");
+const { getMaxElement } = require("../../src/utils/getMaxElement");
 
 describe("getMaxElement", () => {
   it("Returns the maximum element from an array of numbers", () => {

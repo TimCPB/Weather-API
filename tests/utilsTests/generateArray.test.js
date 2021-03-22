@@ -1,4 +1,4 @@
-const { generateArray } = require("../src/utils/generateArray");
+const { generateArray } = require("../../src/utils/generateArray");
 
 describe("generateArray", () => {
   it("Successfully returns an array of all numbers between a min and a max value, inclusive", () => {

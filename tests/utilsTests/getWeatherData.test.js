@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-const { getWeatherData } = require("../src/utils/getWeatherData");
-const mockedResponseData = require("../src/utils/__mocks__/oxford2018MockResponseData.json");
+const { getWeatherData } = require("../../src/utils/getWeatherData");
+const mockedResponseData = require("../../src/utils/__mocks__/oxford2018MockResponseData.json");
 
 describe("getWeatherData", () => {
   jest.mock("axios");

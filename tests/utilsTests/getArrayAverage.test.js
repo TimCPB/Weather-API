@@ -1,4 +1,4 @@
-const { getArrayAverage } = require("../src/utils/getArrayAverage");
+const { getArrayAverage } = require("../../src/utils/getArrayAverage");
 
 describe("getArrayAverage", () => {
   it("Returns the mean from an array of numbers", () => {

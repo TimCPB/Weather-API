@@ -1,6 +1,6 @@
 const {
   roundToOneDecimalPlace,
-} = require("../src/utils/roundToOneDecimalPlace");
+} = require("../../src/utils/roundToOneDecimalPlace");
 
 describe("roundToOneDecimalPlace", () => {
   it("Successfully rounds a number to one decimal place", () => {

@@ -1,4 +1,4 @@
-const { getMinElement } = require("../src/utils/getMinElement");
+const { getMinElement } = require("../../src/utils/getMinElement");
 
 describe("getMinElement", () => {
   it("Returns the minimum element from an array of numbers", () => {
