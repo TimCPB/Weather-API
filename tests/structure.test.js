@@ -10,7 +10,7 @@ const {
 const LOCATION = "oxford";
 const YEAR = 2018;
 
-describe.skip("The exported function", () => {
+describe("The exported function", () => {
   it("getMaxTemperature returns a number", async () => {
     const result = await getMaxTemperature({ location: LOCATION, year: YEAR });
     expect(typeof result).toEqual("number");
