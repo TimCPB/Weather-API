@@ -18,4 +18,12 @@ describe("roundToOneDecimalPlace", () => {
 
     expect(result).toEqual(0.3);
   });
+
+  it("Returns 0 when given null", () => {
+    const testNumber = null;
+
+    const result = roundToOneDecimalPlace({ number: testNumber });
+
+    expect(result).toEqual(0);
+  });
 });
