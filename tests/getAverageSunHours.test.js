@@ -19,4 +19,19 @@ describe("getAverageSunHours", () => {
     expect(result).toEqual(147.9);
     jest.clearAllMocks();
   });
+
+  it("returns 0 in case of an error, such as an invalid year", async () => {
+    const location = "oxford";
+    const year = 2230;
+
+    axios.get = jest.fn().mockRejectedValue(new Error("test error"));
+
+    const result = await getAverageSunHours({
+      location: location,
+      year: year,
+    });
+
+    expect(result).toEqual(0);
+    // axios.get.mockClear();
+  });
 });

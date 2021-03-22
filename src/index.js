@@ -93,32 +93,40 @@ exports.getMinTemperatureForLocation = async ({ location }) => {
 
 // Get average sun hours for a year - Must return a number
 exports.getAverageSunHours = async ({ location, year }) => {
-  const weatherDataArray = await getWeatherData({
-    location: location,
-    year: year,
-  });
+  try {
+    const weatherDataArray = await getWeatherData({
+      location: location,
+      year: year,
+    });
 
-  const sunHoursArray = weatherDataArray.map((month) => month.sun);
+    const sunHoursArray = weatherDataArray.map((month) => month.sun);
 
-  const averageSunHours = getArrayAverage({ array: sunHoursArray });
+    const averageSunHours = getArrayAverage({ array: sunHoursArray });
 
-  return roundToOneDecimalPlace({ number: averageSunHours });
+    return roundToOneDecimalPlace({ number: averageSunHours });
+  } catch (error) {
+    return 0;
+  }
 };
 
 // Get average sun hours for all years - Must return a number
 exports.getAverageSunHoursForLocation = async ({ location }) => {
-  const { startYear, endYear } = await getYearRange({ location: location });
-  const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
+  try {
+    const { startYear, endYear } = await getYearRange({ location: location });
+    const yearsArray = generateArray({ minimum: startYear, maximum: endYear });
 
-  const yearlyAverageSunHoursArray = await Promise.all(
-    yearsArray.map((year) =>
-      this.getAverageSunHours({ location: location, year: year })
-    )
-  );
+    const yearlyAverageSunHoursArray = await Promise.all(
+      yearsArray.map((year) =>
+        this.getAverageSunHours({ location: location, year: year })
+      )
+    );
 
-  const averageSunHours = getArrayAverage({
-    array: yearlyAverageSunHoursArray,
-  });
+    const averageSunHours = getArrayAverage({
+      array: yearlyAverageSunHoursArray,
+    });
 
-  return roundToOneDecimalPlace({ number: averageSunHours });
+    return roundToOneDecimalPlace({ number: averageSunHours });
+  } catch (error) {
+    return 0;
+  }
 };

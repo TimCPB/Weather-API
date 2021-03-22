@@ -27,12 +27,11 @@ describe("getMinTemperatureForLocation", () => {
         data: mockedOxford2017ResponseData,
       });
 
-    console.log(axios.get.mock.results);
-
     const result = await getMinTemperatureForLocation({ location: location });
 
     expect(result).toEqual(0.8);
     // axios.get.mockReset();
+    jest.clearAllMocks();
   });
 
   it("returns 0 in case of an error, such as an invalid location", async () => {
@@ -63,9 +62,7 @@ describe("getMinTemperatureForLocation", () => {
         data: mockedOxford2017ResponseData,
       });
 
-    const result = await getMinTemperatureForLocation({
-      location: location,
-    });
+    const result = await getMinTemperatureForLocation({ location: location });
 
     // console.log(axios.get.mock.calls);
     // console.log(axios.get.mock.results);

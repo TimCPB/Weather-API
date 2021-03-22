@@ -32,4 +32,36 @@ describe("getAverageSunHoursForLocation", () => {
     expect(result).toEqual(129.9);
     jest.clearAllMocks();
   });
+
+  it("returns 0 in case of an an error, such as an invalid location", async () => {
+    const location = "manchester";
+
+    axios.get = jest.fn().mockRejectedValue(new Error("test error"));
+
+    const result = await getAverageSunHoursForLocation({
+      location: location,
+    });
+
+    expect(result).toEqual(0);
+  });
+
+  it("returns the correct result when a nested API call fails and returns 0", async () => {
+    const location = "oxford";
+
+    axios.get = jest
+      .fn()
+      .mockResolvedValueOnce({
+        data: mockedYearResponseData,
+      })
+      .mockResolvedValueOnce({
+        data: mockedOxford2015ResponseData,
+      })
+      .mockRejectedValueOnce(new Error("test error"))
+      .mockResolvedValueOnce({
+        data: mockedOxford2017ResponseData,
+      });
+
+    const result = await getAverageSunHoursForLocation({ location: location });
+    expect(result).toEqual(86.3);
+  });
 });
