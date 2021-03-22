@@ -25,7 +25,7 @@ getMaxTemps = async ({ location, year }) => {
     console.log(getArrayAverage({ array: sunHoursArray }));
     const maxTemp = Math.max(...resultsArray);
 
-    const result = await getMaxTemperature({ location: "oxford", year: 1808 });
+    const result = await getMaxTemperature({ location: "oxford", year: 2004 });
     console.log(`max temp: ${result}`);
 
     const result2 = roundToOneDecimalPlace({ number: 12.33333 });

@@ -5,6 +5,10 @@ const mockedResponseData = require("../src/utils/__mocks__/oxford2018MockRespons
 
 jest.mock("axios");
 
+// afterEach(() => {
+//   cleanUpDatabase(globalDatabase);
+// });
+
 describe("getMaxTemperature", () => {
   it("Successfully gets the max Temperature for oxford 2018", async () => {
     const location = "oxford";
@@ -17,23 +21,23 @@ describe("getMaxTemperature", () => {
     const result = await getMaxTemperature({ location: location, year: year });
 
     expect(result).toEqual(27.4);
-    jest.clearAllMocks();
+    axios.get.mockReset();
   });
 });
 
-describe("getMaxTemperature 2", () => {
-  it("returns 0 in case of an error", async () => {
-    const location = "oxford";
-    const year = 1999;
+// describe("getMaxTemperature 2", () => {
+it("returns 0 in case of an error, such as an invalid year", async () => {
+  const location = "oxford";
+  const year = 2004;
 
-    axios.get = jest.fn().mockRejectedValue(new Error("test error"));
+  axios.get = jest.fn().mockRejectedValue(new Error("test error"));
 
-    const result2 = await getMaxTemperature({
-      location: location,
-      year: year,
-    });
-
-    expect(result2).toEqual(0);
-    jest.clearAllMocks();
+  const result = await getMaxTemperature({
+    location: location,
+    year: year,
   });
+
+  expect(result).toEqual(0);
+  // axios.get.mockClear();
 });
+// });

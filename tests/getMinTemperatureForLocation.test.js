@@ -27,8 +27,50 @@ describe("getMinTemperatureForLocation", () => {
         data: mockedOxford2017ResponseData,
       });
 
+    console.log(axios.get.mock.results);
+
     const result = await getMinTemperatureForLocation({ location: location });
 
     expect(result).toEqual(0.8);
+    // axios.get.mockReset();
+  });
+
+  it("returns 0 in case of an error, such as an invalid location", async () => {
+    const location = "birmingham";
+
+    axios.get = jest.fn().mockRejectedValue(new Error("test error"));
+
+    const result = await getMinTemperatureForLocation({
+      location: location,
+    });
+
+    expect(result).toEqual(0);
+  });
+
+  it("returns 0 in case of an error where the location is correct but a subsequent API call fails", async () => {
+    const location = "oxford";
+
+    axios.get = jest
+      .fn()
+      .mockResolvedValueOnce({
+        data: mockedYearResponseData,
+      })
+      .mockRejectedValueOnce(new Error("test error"))
+      .mockResolvedValueOnce({
+        data: mockedOxford2016ResponseData,
+      })
+      .mockResolvedValueOnce({
+        data: mockedOxford2017ResponseData,
+      });
+
+    const result = await getMinTemperatureForLocation({
+      location: location,
+    });
+
+    // console.log(axios.get.mock.calls);
+    // console.log(axios.get.mock.results);
+
+    expect(axios.get.mock.calls.length).toEqual(4);
+    expect(result).toEqual(0);
   });
 });

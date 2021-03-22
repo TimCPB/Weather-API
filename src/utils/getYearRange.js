@@ -11,8 +11,6 @@ exports.getYearRange = async ({ location }) => {
     });
     return res.data.result;
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data);
   }
 };
-
-// getYearRange({ location: "heathrow" });

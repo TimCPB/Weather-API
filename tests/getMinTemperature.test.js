@@ -18,4 +18,18 @@ describe("getMinTemperature", () => {
     expect(result).toEqual(0.3);
     jest.clearAllMocks();
   });
+
+  it("returns 0 in case of an error, such as an invalid year", async () => {
+    const location = "oxford";
+    const year = 1289;
+
+    axios.get = jest.fn().mockRejectedValue(new Error("test error"));
+
+    const result = await getMinTemperature({
+      location: location,
+      year: year,
+    });
+
+    expect(result).toEqual(0);
+  });
 });
